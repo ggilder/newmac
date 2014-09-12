@@ -1,12 +1,14 @@
+CASK_APPS = %w(
+  google-chrome
+  dropbox
+  onepassword
+  iterm2
+
+)
+
 dep 'newmac' do
   requires(
-    %w(
-      homebrew
-      brew-cask
-      chrome.brewcask
-      dropbox.brewcask
-      onepassword.brewcask
-    )
+    %w(homebrew brew-cask) + CASK_APPS.map { |app| "#{app}.brewcask" }
   )
 end
 
@@ -25,14 +27,8 @@ meta :brewcask do
   }
 end
 
-dep 'chrome.brewcask' do
-  name 'google-chrome'
-end
-
-dep 'dropbox.brewcask' do
-  name 'dropbox'
-end
-
-dep 'onepassword.brewcask' do
-  name 'onepassword'
+CASK_APPS.each do |app|
+  dep "#{app}.brewcask" do
+    name app
+  end
 end
