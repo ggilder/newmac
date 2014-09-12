@@ -4,6 +4,8 @@ CASK_APPS = %w(
   onepassword
   iterm2
   font-meslo-lg-for-powerline
+  clipmenu
+  transmit
 )
 
 dep 'newmac' do
