@@ -4,6 +4,8 @@ dep 'newmac' do
       homebrew
       brew-cask
       chrome.brewcask
+      dropbox.brewcask
+      onepassword.brewcask
     )
   )
 end
@@ -25,4 +27,12 @@ end
 
 dep 'chrome.brewcask' do
   name 'google-chrome'
+end
+
+dep 'dropbox.brewcask' do
+  name 'dropbox'
+end
+
+dep 'onepassword.brewcask' do
+  name 'onepassword'
 end
