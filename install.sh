@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+if [ ! -d "/usr/local" ]; then
+  sudo mkdir /usr/local
+  sudo chown $(whoami) /usr/local
+fi
+
 if [ ! -e "/usr/local/babushka" ]; then
   echo
   echo "Installing babushka..."
