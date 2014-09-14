@@ -39,3 +39,37 @@ CASK_APPS.each do |app|
     name app
   end
 end
+
+meta :app_config do
+  accepts_value_for :domain
+  accepts_value_for :config
+
+  template {
+    met? do
+      # TODO: should this check for presence of plist first?
+      config.all? do |key, value|
+        current = shell('defaults', 'read', domain, key.to_s)
+        log("#{key} current: #{current} expected: #{value.to_s}")
+        current == value.to_s
+      end
+    end
+    meet do
+      config.each do |key, value|
+        log_shell("Setting #{domain} #{key} = #{value}", "defaults", "write", domain, key.to_s, value.to_s)
+      end
+      app_name = domain.split('.').last
+      log_shell("Restarting #{app_name}", "killall #{app_name} && open -a #{app_name}")
+    end
+  }
+end
+
+dep 'clipmenu.app_config' do
+  requires 'clipmenu.brewcask'
+  domain 'com.naotaka.ClipMenu'
+  config({
+    showStatusItem: 0,
+    addNumericKeyEquivalents: 1,
+    menuItemsAreMarkedWithNumbers: 0,
+    numberOfItemsPlaceInline: 20,
+  })
+end
