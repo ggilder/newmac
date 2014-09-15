@@ -23,6 +23,7 @@ dep 'newmac' do
       misc_app_config
       clipmenu.app_config
       safari.app_config
+      fzf_install
     )
   )
 end
@@ -273,4 +274,21 @@ dep 'npm-packages' do
   packages = %w(coffee-script jshint coffeelint jasmine-node mocha)
   met? { packages.all? { |pkg| `npm list -g`.include?(pkg) } }
   meet { packages.each { |pkg| `npm install -g #{pkg}` } }
+end
+
+dep 'fzf_install' do
+  requires 'fzf_symlinked'
+  met? { '~/.fzf.zsh'.p.exist? }
+  meet do
+    version = shell('fzf --version').split(' ')[1]
+    `/usr/local/Cellar/fzf/#{version}/install`
+  end
+end
+
+dep 'fzf_symlinked' do
+  met? { '~/.fzf'.p.exist? }
+  meet do
+    version = shell('fzf --version').split(' ')[1]
+    shell("ln -s /usr/local/Cellar/fzf/#{version} ~/.fzf")
+  end
 end
