@@ -65,7 +65,7 @@ dep 'brew-packages' do
     leiningen
     markdown
     md5deep
-    mysql
+    percona-server
     node
     phantomjs
     postgresql
