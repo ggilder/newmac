@@ -83,7 +83,7 @@ dep 'brew-packages' do
     zsh
   )
   met? { packages.all? { |pkg| shell("brew list #{pkg}") } }
-  meet { packages.all? { |pkg| log_shell("Installing #{pkg}", "brew install #{pkg}") } }
+  meet { packages.all? { |pkg| log_shell("Installing #{pkg}", "brew list #{pkg} || brew install #{pkg}") } }
 end
 
 def check_app_config(domain, key, value)
