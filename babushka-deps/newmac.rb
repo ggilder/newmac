@@ -14,7 +14,6 @@ dep 'newmac' do
     CASK_APPS.map { |app| "#{app}.brewcask" } +
     %w(
       brew-packages
-      zsh_default_shell
       dotfiles
       rvm
       npm-packages
@@ -252,17 +251,6 @@ dep 'dotfiles' do
     `mkdir -p ~/src/dotfiles && git clone --recursive git@github.com:ggilder/dotfiles.git ~/src/dotfiles`
     `cd ~/src/dotfiles && rake install`
   end
-end
-
-dep 'custom_zsh_available' do
-  met? { `cat /etc/shells`.match(%r{^/usr/local/bin/zsh$}) }
-  meet { log_shell("Adding updated zsh to /etc/shells/", 'echo /usr/local/bin/zsh | sudo tee -a /etc/shells') }
-end
-
-dep 'zsh_default_shell' do
-  requires 'custom_zsh_available'
-  met? { `dscl . -read /Users/gabriel UserShell`.include?('/usr/local/bin/zsh') }
-  meet { log_shell("Changing login shell", 'chsh -s /usr/local/bin/zsh') }
 end
 
 dep 'rvm' do
