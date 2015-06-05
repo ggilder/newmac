@@ -272,7 +272,7 @@ dep 'fzf_install' do
   requires 'fzf_symlinked'
   met? { '~/.fzf.zsh'.p.exist? }
   meet do
-    version = shell('fzf --version').split(' ')[1]
+    version = shell('fzf --version').split(' ').last
     `/usr/local/Cellar/fzf/#{version}/install`
   end
 end
@@ -280,7 +280,7 @@ end
 dep 'fzf_symlinked' do
   met? { '~/.fzf'.p.exist? }
   meet do
-    version = shell('fzf --version').split(' ')[1]
+    version = shell('fzf --version').split(' ').last
     shell("ln -s /usr/local/Cellar/fzf/#{version} ~/.fzf")
   end
 end
