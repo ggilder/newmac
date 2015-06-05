@@ -1,7 +1,11 @@
+# TODO
+# - fix owner on /usr/local/share
+# - fix vim install, need to `rvm use system`
+#
 CASK_APPS = %w(
   google-chrome
   dropbox
-  onepassword
+  1password
   iterm2
   font-meslo-lg-for-powerline
   clipmenu
