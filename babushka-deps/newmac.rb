@@ -10,6 +10,7 @@ CASK_APPS = %w(
   font-meslo-lg-for-powerline
   clipmenu
   transmit
+  menumeters
 )
 
 dep 'newmac' do
@@ -26,6 +27,7 @@ dep 'newmac' do
       misc_app_config
       clipmenu.app_config
       safari.app_config
+      menumeters.app_config
       fzf_install
     )
   )
@@ -186,6 +188,21 @@ dep 'safari.app_config' do
     'IncludeInternalDebugMenu' => true,
     # Make Safari’s search banners default to Contains instead of Starts With
     'FindOnPageMatchesWordStartsOnly' => false,
+  })
+end
+
+dep 'menumeters.app_config' do
+  domain 'com.ragingmenace.MenuMeters'
+  config({
+    'CPUAverageMultiProcs' => 1,
+    'CPUDisplayMode' => 2,
+    'NetDisplayMode' => 2,
+    'NetGraphStyle' => 0,
+    'NetOrientation' => 0,
+    'NetPreferInterface' => 'primary',
+    'NetScaleCalc' => 2,
+    'NetScaleMode' => 0,
+    'NetThroughputLabel' => 0,
   })
 end
 
