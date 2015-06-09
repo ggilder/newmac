@@ -11,6 +11,7 @@ CASK_APPS = %w(
   clipmenu
   transmit
   menumeters
+  doxie
 )
 
 dep 'newmac' do
