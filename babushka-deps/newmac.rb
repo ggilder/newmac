@@ -12,6 +12,7 @@ CASK_APPS = %w(
   transmit
   menumeters
   doxie
+  utc-menu-clock
 )
 
 dep 'newmac' do
