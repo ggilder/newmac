@@ -117,7 +117,7 @@ def set_app_configs(domain, config)
 end
 
 def reload_app(domains, app)
-  cmd = Array(domains).map { |domain| "defaults read #{domain}" }.join(' && ')
+  cmd = Array(domains).map { |domain| "defaults read '#{domain}'" }.join(' && ')
   log_shell("Flushing preferences cache", "#{cmd} && killall -u $USER cfprefsd")
   log_shell("Killing #{app}", "killall #{app}")
   log_shell("Launching #{app}", "open -a #{app}")
