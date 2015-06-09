@@ -241,7 +241,7 @@ dep 'misc_app_config' do
     },
     'com.apple.menuextra.clock' => {
       # Show date in menu bar clock
-      'DateFormat' => "EEE MMM d  h:mm a",
+      'DateFormat' => "MMM d  H:mm",
     },
     'com.apple.universalaccess' => {
       # Flash screen instead of alert sound
