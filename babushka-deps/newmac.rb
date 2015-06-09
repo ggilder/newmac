@@ -247,6 +247,9 @@ dep 'misc_app_config' do
       # Flash screen instead of alert sound
       'flashScreen' => false,
     },
+    'Apple Global Domain' => {
+      'AppleKeyboardUIMode' => 2,
+    },
   }
   met? do
     config.all? do |domain, hash|
