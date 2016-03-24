@@ -5,7 +5,6 @@
 CASK_APPS = %w(
   google-chrome
   dropbox
-  1password
   iterm2
   font-meslo-lg-for-powerline
   clipmenu
