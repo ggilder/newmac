@@ -1,6 +1,6 @@
 # TODO
-# - fix owner on /usr/local/share
-# - fix vim install, need to `rvm use system`
+# - Make cask version of Chrome, iTerm, other apps optional - recognize if already installed
+# - Remove a bunch of brew packages - these should mostly be configured per-project, don't need to maintain a list here
 #
 CASK_APPS = %w(
   google-chrome
@@ -8,8 +8,6 @@ CASK_APPS = %w(
   iterm2
   font-meslo-lg-for-powerline
   clipmenu
-  transmit
-  menumeters
   doxie
   utc-menu-clock
 )
@@ -27,8 +25,6 @@ dep 'newmac' do
       finder.app_config
       misc_app_config
       clipmenu.app_config
-      safari.app_config
-      menumeters.app_config
       fzf_install
     )
   )
@@ -36,7 +32,7 @@ end
 
 dep 'brew-cask' do
   met? { `brew tap`.include?('caskroom/cask') }
-  meet { `brew install caskroom/cask/brew-cask` }
+  meet { `brew update && brew cask` }
 end
 
 dep 'brew-fonts' do
@@ -180,31 +176,6 @@ dep 'finder.app_config' do
   })
   # Enable arrange by kind for desktop icons
   extra '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy kind" ~/Library/Preferences/com.apple.finder.plist'
-end
-
-dep 'safari.app_config' do
-  domain 'com.apple.Safari'
-  config({
-    # Enable Safari’s debug menu
-    'IncludeInternalDebugMenu' => true,
-    # Make Safari’s search banners default to Contains instead of Starts With
-    'FindOnPageMatchesWordStartsOnly' => false,
-  })
-end
-
-dep 'menumeters.app_config' do
-  domain 'com.ragingmenace.MenuMeters'
-  config({
-    'CPUAverageMultiProcs' => 1,
-    'CPUDisplayMode' => 2,
-    'NetDisplayMode' => 2,
-    'NetGraphStyle' => 0,
-    'NetOrientation' => 0,
-    'NetPreferInterface' => 'primary',
-    'NetScaleCalc' => 2,
-    'NetScaleMode' => 0,
-    'NetThroughputLabel' => 0,
-  })
 end
 
 dep 'misc_app_config' do

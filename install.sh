@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+# TODO should check ownership of /usr/local here
+
 if [ ! -d "/usr/local" ]; then
   sudo mkdir /usr/local
   sudo chown $(whoami) /usr/local
