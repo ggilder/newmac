@@ -58,24 +58,20 @@ end
 
 dep 'brew-packages' do
   packages = %w(
-    ag
     ctags
     fzf
-    ghc
     git
     go
     imagemagick
-    leiningen
     markdown
     md5deep
-    percona-server
+    neovim/neovim/neovim
     node
-    phantomjs
+    percona-server
     postgresql
     psgrep
     pstree
     reattach-to-user-namespace
-    redis
     siege
     the_silver_searcher
     tig
