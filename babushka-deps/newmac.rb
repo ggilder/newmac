@@ -211,6 +211,7 @@ dep 'system_preferences' do
     'Apple Global Domain' => {
       'AppleKeyboardUIMode' => 2,
       'NSAutomaticPeriodSubstitutionEnabled' => 0,
+      'AppleICUForce24HourTime' => 1,
     },
   }
   met? do
