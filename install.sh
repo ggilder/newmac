@@ -1,10 +1,13 @@
 #!/bin/bash
 set -e
 
-# TODO should check ownership of /usr/local here
-
 if [ ! -d "/usr/local" ]; then
+  echo "Creating /usr/local..."
   sudo mkdir /usr/local
+fi
+
+if [ $(ls -ld /usr/local | awk '{print $3}') != $(whoami) ]; then
+  echo "Changing ownership on /usr/local to $(whoami)..."
   sudo chown $(whoami) /usr/local
 fi
 
