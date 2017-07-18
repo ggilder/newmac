@@ -134,10 +134,11 @@ dep 'clipy.app_config' do
   requires 'clipy.brewcask'
   domain 'com.clipy-app.Clipy'
   config({
-    showStatusItem: 0,
+    kCPYPrefShowStatusItemKey: 0,
+    kCPYPrefNumberOfItemsPlaceInlineKey: 20,
+    kCPYPrefMaxHistorySizeKey: 20,
     addNumericKeyEquivalents: 1,
     menuItemsAreMarkedWithNumbers: 0,
-    numberOfItemsPlaceInline: 20,
   })
 end
 
