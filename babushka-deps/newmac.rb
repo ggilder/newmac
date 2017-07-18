@@ -210,6 +210,7 @@ dep 'system_preferences' do
     },
     'Apple Global Domain' => {
       'AppleKeyboardUIMode' => 2,
+      'NSAutomaticPeriodSubstitutionEnabled' => 0,
     },
   }
   met? do
