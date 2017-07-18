@@ -1,13 +1,12 @@
 # TODO
 # - Make cask version of Chrome, iTerm, other apps optional - recognize if already installed
-# - Remove a bunch of brew packages - these should mostly be configured per-project, don't need to maintain a list here
-#
+
 CASK_APPS = %w(
   google-chrome
   dropbox
   iterm2
-  font-meslo-lg-for-powerline
-  clipmenu
+  font-meslo-for-powerline
+  clipy
   doxie
   utc-menu-clock
 )
@@ -19,12 +18,10 @@ dep 'newmac' do
     %w(
       brew-packages
       dotfiles
-      rvm
-      npm-packages
       dock.app_config
       finder.app_config
-      misc_app_config
-      clipmenu.app_config
+      system_preferences
+      clipy.app_config
       fzf_install
     )
   )
@@ -62,13 +59,9 @@ dep 'brew-packages' do
     fzf
     git
     go
-    imagemagick
     markdown
     md5deep
     neovim/neovim/neovim
-    node
-    percona-server
-    postgresql
     psgrep
     pstree
     reattach-to-user-namespace
@@ -137,9 +130,9 @@ meta :app_config do
   }
 end
 
-dep 'clipmenu.app_config' do
-  requires 'clipmenu.brewcask'
-  domain 'com.naotaka.ClipMenu'
+dep 'clipy.app_config' do
+  requires 'clipy.brewcask'
+  domain 'com.clipy-app.Clipy'
   config({
     showStatusItem: 0,
     addNumericKeyEquivalents: 1,
@@ -174,7 +167,7 @@ dep 'finder.app_config' do
   extra '/usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy kind" ~/Library/Preferences/com.apple.finder.plist'
 end
 
-dep 'misc_app_config' do
+dep 'system_preferences' do
   # app_name 'SystemUIServer'
   config = {
     'com.apple.screencapture' => {
@@ -243,17 +236,6 @@ dep 'dotfiles' do
     `mkdir -p ~/src/dotfiles && git clone --recursive git@github.com:ggilder/dotfiles.git ~/src/dotfiles`
     `cd ~/src/dotfiles && rake install`
   end
-end
-
-dep 'rvm' do
-  met? { '~/.rvm'.p.dir? }
-  meet { log_shell("Installing RVM", 'curl -L https://get.rvm.io | bash -s stable --ruby') }
-end
-
-dep 'npm-packages' do
-  packages = %w(coffee-script jshint coffeelint jasmine-node mocha)
-  met? { packages.all? { |pkg| `npm list -g`.include?(pkg) } }
-  meet { packages.each { |pkg| `npm install -g #{pkg}` } }
 end
 
 dep 'fzf_install' do
