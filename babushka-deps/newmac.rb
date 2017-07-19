@@ -184,10 +184,6 @@ dep 'system_preferences' do
       'PMPrintingExpandedStateForPrint' => true,
       # Disable press-and-hold for keys in favor of key repeat
       'ApplePressAndHoldEnabled' => false,
-      # Set a blazingly fast keyboard repeat rate
-      'KeyRepeat' => 0,
-      # Set a shorter Delay until key repeat
-      'InitialKeyRepeat' => 12,
       # Disable auto-correct
       'NSAutomaticSpellingCorrectionEnabled' => false,
       # Add a context menu item for showing the Web Inspector in web views
@@ -209,9 +205,16 @@ dep 'system_preferences' do
       'flashScreen' => false,
     },
     'Apple Global Domain' => {
+      # Enable keyboard navigation of dialogs etc.
       'AppleKeyboardUIMode' => 2,
+      # Turn off 2 spaces = period
       'NSAutomaticPeriodSubstitutionEnabled' => 0,
+      # 24-hour time
       'AppleICUForce24HourTime' => 1,
+      # Set a blazingly fast keyboard repeat rate
+      'KeyRepeat' => 1,
+      # Set a shorter Delay until key repeat
+      'InitialKeyRepeat' => 12,
     },
   }
   met? do
