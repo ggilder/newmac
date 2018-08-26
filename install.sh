@@ -6,10 +6,13 @@ if [ ! -d "/usr/local" ]; then
   sudo mkdir /usr/local
 fi
 
-if [ $(ls -ld /usr/local | awk '{print $3}') != $(whoami) ]; then
-  echo "Changing ownership on /usr/local to $(whoami)..."
-  sudo chown $(whoami) /usr/local
-fi
+# if [ $(ls -ld /usr/local | awk '{print $3}') != $(whoami) ]; then
+#   echo "Changing ownership on /usr/local to $(whoami)..."
+#   sudo chown $(whoami) /usr/local
+# fi
+
+# Make sure developer tools are installed
+xcode-select --help &> /dev/null || xcode-select --install
 
 if [ ! -e "/usr/local/babushka" ]; then
   echo

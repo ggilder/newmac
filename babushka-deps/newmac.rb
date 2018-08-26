@@ -1,5 +1,6 @@
 # TODO
 # - Make cask version of Chrome, iTerm, other apps optional - recognize if already installed
+# - Fix defaults commands - somehow broken in newer babushka
 
 CASK_APPS = %w(
   google-chrome
@@ -13,7 +14,7 @@ CASK_APPS = %w(
 
 dep 'newmac' do
   requires(
-    %w(homebrew brew-cask brew-fonts) +
+    %w(homebrew brew-fonts) +
     CASK_APPS.map { |app| "#{app}.brewcask" } +
     %w(
       brew-packages
@@ -27,21 +28,15 @@ dep 'newmac' do
   )
 end
 
-dep 'brew-cask' do
-  met? { `brew tap`.include?('caskroom/cask') }
-  meet { `brew update && brew cask` }
-end
-
 dep 'brew-fonts' do
-  met? { `brew tap`.include?('caskroom/fonts') }
-  meet { `brew tap caskroom/fonts` }
+  met? { `brew tap`.include?('homebrew/cask-fonts') }
+  meet { `brew tap homebrew/cask-fonts` }
 end
 
 meta :brewcask do
   accepts_value_for :name
 
   template {
-    requires 'brew-cask'
     met? { `brew cask list`.include?(name) }
     meet { `brew cask install #{name}` }
   }
