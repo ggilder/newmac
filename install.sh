@@ -6,15 +6,12 @@ if [ ! -d "/usr/local" ]; then
   sudo mkdir /usr/local
 fi
 
-if [ $(ls -ld /usr/local | awk '{print $3}') != $(whoami) ]; then
-  echo "Changing ownership on /usr/local to $(whoami)..."
-  sudo chown $(whoami) /usr/local
-fi
-
 if [ ! -e "/usr/local/babushka" ]; then
   echo
   echo "Installing babushka..."
-  sh -c "`curl https://babushka.me/up`" < /dev/null
+  sudo mkdir /usr/local/babushka
+  sudo chown -R $(whoami) /usr/local/babushka
+  sh -c "`curl https://babushka.me/up`"
 fi
 
 echo
@@ -24,5 +21,6 @@ babushka babushka
 echo "Babushka version:" `babushka --version`
 
 echo
-echo "Installing stuff..."
-babushka newmac
+echo "Babushka is installed! Now you might want to run one of the following:"
+echo "> babushka newmac"
+echo "> babushka workmac"

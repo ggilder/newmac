@@ -7,7 +7,6 @@ CASK_APPS = %w(
   iterm2
   font-meslo-for-powerline
   clipy
-  doxie
   utc-menu-clock
 )
 
@@ -28,13 +27,13 @@ dep 'newmac' do
 end
 
 dep 'brew-cask' do
-  met? { `brew tap`.include?('caskroom/cask') }
-  meet { `brew update && brew cask` }
+  met? { `brew tap`.include?('homebrew/cask') }
+  meet { `brew update && brew cask list` }
 end
 
 dep 'brew-fonts' do
-  met? { `brew tap`.include?('caskroom/fonts') }
-  meet { `brew tap caskroom/fonts` }
+  met? { `brew tap`.include?('homebrew/cask-fonts') }
+  meet { `brew tap homebrew/cask-fonts` }
 end
 
 meta :brewcask do
@@ -65,7 +64,6 @@ dep 'brew-packages' do
     psgrep
     pstree
     reattach-to-user-namespace
-    siege
     the_silver_searcher
     tig
     tmux
