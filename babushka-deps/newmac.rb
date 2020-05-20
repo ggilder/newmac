@@ -64,6 +64,7 @@ dep 'brew-packages' do
     psgrep
     pstree
     reattach-to-user-namespace
+    rg
     the_silver_searcher
     tig
     tmux
